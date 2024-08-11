@@ -1,20 +1,45 @@
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
+
 public class SpiralMatrix {
-    public static void main(String[] args)
-    {
-        Scanner sc=new Scanner(System.in);
-        System.out.println("Enter the number of rows in the matrix");
-        int n=sc.nextInt();
-        System.out.println("Enter the number of columns in the matrix");
-        int m=sc.nextInt();
-        for(int i=1;i<=n;i++)
-        {
-            for(int j=1;j<=m;j++)
-            {
-                System.out.print(sc.nextInt());
+    public static void main(String[] args) {
+        int[][] matrix = {
+            {1, 2, 3, 4},
+            {5, 6, 7, 8},
+            {9, 10, 11, 12}
+        };
+
+        List<Integer> result = new ArrayList<>();
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        int left = 0, right = cols - 1;
+        int top = 0, bottom = rows - 1;
+
+        while (top <= bottom && left <= right) {
+            for (int i = left; i <= right; i++) {
+                result.add(matrix[top][i]);
             }
-            System.out.println();
+            top++;
+
+            for (int i = top; i <= bottom; i++) {
+                result.add(matrix[i][right]);
+            }
+            right--;
+
+            for (int i = right; i >= left; i--) {
+                result.add(matrix[bottom][i]);
+            }
+            bottom--;
+
+            for (int i = bottom; i >= top; i--) {
+                result.add(matrix[i][left]);
+            }
+            left++;
         }
-        
+
+        // Print the spiral matrix
+        for (int i = 0; i < result.size(); i++) {
+            System.out.print(result.get(i) + " ");
+        }
     }
 }
