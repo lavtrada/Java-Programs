@@ -26,20 +26,23 @@ public class SpiralMatrix {
             }
             right--;
 
-            for (int i = right; i >= left; i--) {
-                result.add(matrix[bottom][i]);
-            }
-            bottom--;
+            if(top<=bottom)
+            {
 
-            for (int i = bottom; i >= top; i--) {
-                result.add(matrix[i][left]);
+                for (int i = right; i >= left; i--) {
+                    result.add(matrix[bottom][i]);
+                }
+                bottom--;
             }
-            left++;
-        }
+            if(left<=right)
+            {
 
-        // Print the spiral matrix
-        for (int i = 0; i < result.size(); i++) {
-            System.out.print(result.get(i) + " ");
+                for (int i = bottom; i >= top; i--) {
+                    result.add(matrix[i][left]);
+                }
+                left++;
+            }
         }
+        System.out.println(result);
     }
 }
